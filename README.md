@@ -45,6 +45,33 @@ Planned public data sources include:
 - Grid emission factors
 - Public stadium sustainability reports
 
-## Project status
+## Estimation Methodology V0
 
-Day 1: Concept and repository setup.
+Goal:
+Estimate electricity consumption of a World Cup match.
+
+Inputs:
+- Stadium capacity
+- Attendance
+- Stadium type
+
+Assumption:
+
+Low Case:
+30 MWh / match
+
+Base Case:
+60 MWh / match
+
+High Case:
+100 MWh / match
+
+## Build Log
+
+### Day 1
+- Created repository
+- Defined project vision
+
+### Day 2
+- Collected first stadium dataset
+- Drafted estimation methodology
