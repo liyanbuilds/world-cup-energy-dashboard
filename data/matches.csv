@@ -1,0 +1,4 @@
+match_id,date,city,stadium,home_team,away_team,attendance,energy_scenario,estimated_energy_mwh
+1,2026-06-15,Seattle,Lumen Field,Team A,Team B,68740,Base,60
+2,2026-06-16,Vancouver,BC Place,Team C,Team D,54000,Base,55
+3,2026-06-17,Los Angeles,SoFi Stadium,Team E,Team F,70000,High,75

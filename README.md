@@ -99,3 +99,11 @@ python -m streamlit run dashboard/app.py
 - Calculated total estimated stadium energy
 - Converted MWh into equivalent annual household electricity use
 
+### Day 5
+
+- Created the first match-level dataset (`data/matches.csv`)
+- Updated the dashboard to load data with pandas
+- Calculated total estimated stadium energy from the dataset
+- Added a highest-energy match section
+- Displayed the match dataset in the dashboard
+

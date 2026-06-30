@@ -1,3 +1,4 @@
+import pandas as pd
 import streamlit as st
 
 st.set_page_config(
@@ -19,36 +20,24 @@ st.markdown(
 st.divider()
 
 # -----------------------------
-# Model assumptions - V0
+# Load match dataset
 # -----------------------------
 
+matches = pd.read_csv("data/matches.csv")
+
 total_matches = 104
+games_played = len(matches)
+total_energy_mwh = matches["estimated_energy_mwh"].sum()
 
-scenario = st.radio(
-    "Choose energy scenario",
-    ["Low", "Base", "High"],
-    horizontal=True,
-)
-
-energy_per_match = {
-    "Low": 30,
-    "Base": 60,
-    "High": 100,
-}
-
-games_played = st.slider(
-    "Games played",
-    min_value=0,
-    max_value=104,
-    value=1,
-)
-
-energy_per_match_mwh = energy_per_match[scenario]
-total_energy_mwh = games_played * energy_per_match_mwh
-
-# Temporary placeholder assumption
+# Temporary placeholder assumption:
+# 1 US household uses around 10 MWh of electricity per year.
 annual_home_energy_mwh = 10
 equivalent_homes = total_energy_mwh / annual_home_energy_mwh
+
+top_match = matches.sort_values(
+    by="estimated_energy_mwh",
+    ascending=False
+).iloc[0]
 
 # -----------------------------
 # KPI cards
@@ -57,7 +46,7 @@ equivalent_homes = total_energy_mwh / annual_home_energy_mwh
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.metric("Games Played", f"{games_played} / {total_matches}")
+    st.metric("Games in Dataset", f"{games_played} / {total_matches}")
 
 with col2:
     st.metric("Estimated Stadium Energy", f"{total_energy_mwh:,.0f} MWh")
@@ -67,29 +56,31 @@ with col3:
 
 st.divider()
 
-st.subheader("Current Model")
+# -----------------------------
+# Top energy match
+# -----------------------------
+
+st.subheader("⚡ Highest Energy Match So Far")
 
 st.markdown(
     f"""
-    **Scenario:** {scenario}  
-    **Assumed energy per match:** {energy_per_match_mwh} MWh  
-    **Formula:** Games Played × Energy per Match  
+    **{top_match["home_team"]} vs {top_match["away_team"]}**  
+    Stadium: **{top_match["stadium"]}**, {top_match["city"]}  
+    Estimated energy: **{top_match["estimated_energy_mwh"]} MWh**
     """
 )
+
+st.divider()
+
+# -----------------------------
+# Match table
+# -----------------------------
+
+st.subheader("Match Energy Dataset")
+
+st.dataframe(matches, use_container_width=True)
 
 st.info(
-    "🚧 Model V0: This is a simplified stadium energy estimate. "
-    "Future versions will include attendance, stadium type, weather, travel, broadcasting, and streaming."
-)
-
-st.subheader("Coming Next")
-
-st.markdown(
-    """
-    - 🏟️ Stadium-level dataset  
-    - 📊 Match-by-match energy estimate  
-    - 🧾 World Cup Energy Receipt  
-    - ✈️ Fan travel footprint  
-    - 📺 Broadcasting and streaming energy  
-    """
+    "🚧 Model V0: This dataset uses simplified match-level energy assumptions. "
+    "Future versions will estimate energy based on stadium type, attendance, weather, travel, broadcasting, and streaming."
 )
