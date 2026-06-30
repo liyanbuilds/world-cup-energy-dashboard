@@ -66,6 +66,12 @@ Base Case:
 High Case:
 100 MWh / match
 
+## How to Run Locally
+
+```bash
+source .venv/bin/activate
+python -m streamlit run dashboard/app.py
+
 ## Build Log
 
 ### Day 1
@@ -75,3 +81,21 @@ High Case:
 ### Day 2
 - Collected first stadium dataset
 - Drafted estimation methodology
+
+### Day 3
+- Set up the local development environment with VS Code
+- Created a Python virtual environment (`.venv`)
+- Installed Streamlit and project dependencies
+- Built the first Streamlit dashboard prototype
+- Ran the dashboard locally
+- Committed and pushed the first dashboard code to GitHubgit 
+
+
+### Day 4
+
+- Added the first energy estimation model
+- Created Low / Base / High energy scenarios
+- Added a games played slider
+- Calculated total estimated stadium energy
+- Converted MWh into equivalent annual household electricity use
+
