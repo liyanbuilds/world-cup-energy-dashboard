@@ -107,3 +107,10 @@ python -m streamlit run dashboard/app.py
 - Added a highest-energy match section
 - Displayed the match dataset in the dashboard
 
+### Day 6
+
+- Added a social-friendly "World Cup Energy Receipt"
+- Converted estimated MWh into equivalent EV charges
+- Improved the dashboard storytelling layer
+- Made the dashboard more suitable for screenshots and social media sharing
+
